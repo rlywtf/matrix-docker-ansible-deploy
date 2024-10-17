@@ -46,7 +46,7 @@ matrix_bot_baibot_enabled: true
 matrix_bot_baibot_config_user_password: 'PASSWORD_FOR_THE_BOT'
 
 # An optional passphrase to use for backing up and recovering the bot's encryption keys.
-# You can use any string here. Consider generating it with `pwgen -s 64 1`.
+# You can put any string here, but generating a strong one is preferred (e.g. `pwgen -s 64 1`).
 #
 # If set to null, the recovery module will not be used and losing your session/database
 # will mean you lose access to old messages in encrypted room.
@@ -186,7 +186,7 @@ matrix_bot_baibot_config_agents_static_definitions_groq_config_text_generation_m
 # or you can adjust it below only for the Groq agent.
 # matrix_bot_baibot_config_agents_static_definitions_groq_config_text_generation_prompt: "{{ matrix_bot_baibot_config_agents_static_definitions_prompt }}"
 
-# Uncomment and adjust if you're not happy with these speech-to-text defaults:
+# Uncomment and adjust this part if you're not happy with these speech-to-text defaults:
 #
 # matrix_bot_baibot_config_agents_static_definitions_groq_config_speech_to_text_enabled: true
 # matrix_bot_baibot_config_agents_static_definitions_groq_config_speech_to_text_model_id: whisper-large-v3
@@ -217,7 +217,7 @@ matrix_bot_baibot_config_agents_static_definitions_mistral_config_api_key: "YOUR
 # or you can adjust it below only for the Mistral agent.
 # matrix_bot_baibot_config_agents_static_definitions_mistral_config_text_generation_prompt: "{{ matrix_bot_baibot_config_agents_static_definitions_prompt }}"
 
-# Uncomment and adjust if you're not happy with these defaults:
+# Uncomment and adjust this part if you're not happy with these defaults:
 # matrix_bot_baibot_config_agents_static_definitions_mistral_config_text_generation_model_id: mistral-large-latest
 
 # See `defaults/main.yml` in the baibot role for more configuration options.
@@ -357,7 +357,7 @@ You can configure the **initial values** for these via Ansible, via the `matrix_
 Example **additional** `vars.yml` configuration:
 
 ```yml
-# NOTE: these are initial defaults for the bot's global configuration.
+# Note: these are initial defaults for the bot's global configuration.
 # As such, changing any of these values subsequently has no effect on the bot's behavior.
 # Once initially configured, the global configuration is managed via bot commands, not via Ansible.
 

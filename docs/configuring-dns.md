@@ -71,7 +71,7 @@ The `sygnal.<your-domain>` subdomain may be necessary, because this playbook cou
 
 The `ntfy.<your-domain>` subdomain may be necessary, because this playbook could install the [ntfy](https://ntfy.sh/) UnifiedPush-compatible push notifications server. The installation of ntfy is disabled by default, it is not a core required component. To learn how to install it, see our [configuring ntfy guide](configuring-playbook-ntfy.md). If you do not wish to set up ntfy, feel free to skip the `ntfy.<your-domain>` DNS record.
 
-The `etherpad.<your-domain>` subdomain may be necessary, because this playbook could install the [Etherpad](https://etherpad.org/) a highly customizable open source online editor providing collaborative editing in really real-time. The installation of etherpad is disabled by default, it is not a core required component. To learn how to install it, see our [configuring etherpad guide](configuring-playbook-etherpad.md). If you do not wish to set up etherpad, feel free to skip the `etherpad.<your-domain>` DNS record.
+The `etherpad.<your-domain>` subdomain may be necessary, because this playbook could install the [Etherpad](https://etherpad.org/) a highly customizable open source online editor providing collaborative editing in really real-time. The installation of Etherpad is disabled by default, it is not a core required component. To learn how to install it, see our [configuring Etherpad guide](configuring-playbook-etherpad.md). If you do not wish to set up Etherpad, feel free to skip the `etherpad.<your-domain>` DNS record.
 
 The `hydrogen.<your-domain>` subdomain may be necessary, because this playbook could install the [Hydrogen](https://github.com/element-hq/hydrogen-web) web client. The installation of Hydrogen is disabled by default, it is not a core required component. To learn how to install it, see our [configuring Hydrogen guide](configuring-playbook-client-hydrogen.md). If you do not wish to set up Hydrogen, feel free to skip the `hydrogen.<your-domain>` DNS record.
 
@@ -89,7 +89,7 @@ To make the [ma1sd](https://github.com/ma1uta/ma1sd) Identity Server (which this
 
 This is an optional feature for the optionally-installed [ma1sd service](configuring-playbook-ma1sd.md). See [ma1sd's documentation](https://github.com/ma1uta/ma1sd/wiki/mxisd-and-your-privacy#choices-are-never-easy) for information on the privacy implications of setting up this SRV record.
 
-Note: This `_matrix-identity._tcp` SRV record for the identity server is different from the `_matrix._tcp` that can be used for Synapse delegation. See [howto-server-delegation.md](howto-server-delegation.md) for more information about delegation.
+**Note**: This `_matrix-identity._tcp` SRV record for the identity server is different from the `_matrix._tcp` that can be used for Synapse delegation. See [howto-server-delegation.md](howto-server-delegation.md) for more information about delegation.
 
 When you're done with the DNS configuration and ready to proceed, continue with [Getting the playbook](getting-the-playbook.md).
 

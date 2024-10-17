@@ -38,7 +38,7 @@ matrix_cactus_comments_enabled: true
 # but we explicitly enable it here.
 matrix_cactus_comments_client_enabled: true
 
-# Uncomment and adjust if you'd like to host the client assets at a different location.
+# Uncomment and adjust this part if you'd like to host the client assets at a different location.
 # These variables are only make used if (`matrix_cactus_comments_client_enabled: true`)
 # matrix_cactus_comments_client_hostname: "{{ matrix_server_fqn_matrix }}"
 # matrix_cactus_comments_client_path_prefix: /cactus-comments
@@ -53,10 +53,12 @@ After configuring the playbook, run the [installation](installing.md) command: `
 Upon starting Cactus Comments, a `bot.cactusbot` user account is created automatically.
 
 To get started, send a `help` message to the `@bot.cactusbot:your-homeserver.com` bot to confirm it's working.
+
 Then, register a site by typing: `register <sitename>`. You will then be invited into a moderation room.
+
 Now you are good to go and can include the comment section on your website!
 
-**Careful:** To really make use of self-hosting you need change a few things in comparison to the official docs!
+**Careful**: To really make use of self-hosting you need change a few things in comparison to the official docs!
 
 Insert the following snippet into you page and make sure to replace `example.com` with your base domain!
 

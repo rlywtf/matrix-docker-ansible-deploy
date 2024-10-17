@@ -1,7 +1,6 @@
 # Storing Synapse media files on Amazon S3 or another compatible Object Storage (optional)
 
-By default, this playbook configures your server to store Synapse's content repository (`media_store`) files on the local filesystem.
-If that's alright, you can skip this.
+By default, this playbook configures your server to store Synapse's content repository (`media_store`) files on the local filesystem. If that's okay, you can skip this document.
 
 As an alternative to storing media files on the local filesystem, you can store them on [Amazon S3](https://aws.amazon.com/s3/) or another S3-compatible object store.
 
@@ -65,7 +64,7 @@ You'll need an Amazon S3 bucket and some IAM user credentials (access key + secr
 }
 ```
 
-**NOTE**: This policy needs to be attached to an IAM user created from the **Security Credentials** menu. This is not a **Bucket Policy**.
+**Note**: This policy needs to be attached to an IAM user created from the **Security Credentials** menu. This is not a **Bucket Policy**.
 
 
 ## Backblaze B2
