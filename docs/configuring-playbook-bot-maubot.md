@@ -8,7 +8,7 @@ See the project's [documentation](https://docs.mau.fi/maubot/usage/basic.html) t
 
 ## Adjusting the playbook configuration
 
-To enable maubot, add the following configuration to your `inventory/host_vars/matrix.example.com/vars.yml` file:
+To enable the bot, add the following configuration to your `inventory/host_vars/matrix.example.com/vars.yml` file:
 
 ```yaml
 matrix_bot_maubot_enabled: true
@@ -16,7 +16,7 @@ matrix_bot_maubot_enabled: true
 # Uncomment and adjust this part if you'd like to use a username different than the default
 # matrix_bot_maubot_login: bot.maubot
 
-# Generate a strong password here. Consider generating it with `pwgen -s 64 1`
+# Generate a strong password for the bot. You can create one with a command like `pwgen -s 64 1`.
 matrix_bot_maubot_initial_password: PASSWORD_FOR_THE_BOT
 
 matrix_bot_maubot_admins:
@@ -75,8 +75,10 @@ You should start in the following order
 2. **Upload some Plugins**: Plugins can be obtained from [here](https://github.com/maubot/maubot#plugins) or any other source.
 3. **Create an instance**: An instance is the actual bot. You have to specify a client which the bot instance will use and the plugin (how the bot will behave)
 
-## Obtaining an access token
+## Obtain an access token
 
 This can be done via `mbc login` then `mbc auth` (see the [maubot documentation](https://docs.mau.fi/maubot/usage/cli/auth.html)). To run these commands, you'll first need to `exec` into the maubot container with `docker exec -it matrix-bot-maubot sh`.
 
-Alternatively, you can follow our generic [obtain an access token](obtaining-access-tokens.md) documentation. Be aware that you'd better use the **Obtain an access token via curl** method (not **Obtain an access token via Element Web**) as the latter will give your bot issues in encrypted rooms. Read [more](https://docs.mau.fi/maubot/usage/basic.html#creating-clients).
+Alternatively, you can refer to the documentation on [how to obtain an access token](obtaining-access-tokens.md). Be aware that you'd better use the **Obtain an access token via curl** method (not **Obtain an access token via Element Web**) as the latter will causes issues to your bot in encrypted rooms. Read [more](https://docs.mau.fi/maubot/usage/basic.html#creating-clients).
+
+⚠️ **Warning**: Access tokens are sensitive information. Do not include them in any bug reports, messages, or logs. Do not share the access token with anyone.

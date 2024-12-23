@@ -6,7 +6,7 @@ The bot allows you to easily **create and manage registration tokens** aka. invi
 
 See the project's [documentation](https://github.com/moan0s/matrix-registration-bot/blob/master/README.md) to learn what it does and why it might be useful to you.
 
-## Configuration
+## Adjusting the playbook configuration
 
 To enable the bot, add the following configuration to your `inventory/host_vars/matrix.example.com/vars.yml` file:
 
@@ -17,7 +17,7 @@ matrix_bot_matrix_registration_bot_enabled: true
 # Uncomment and adjust this part if you'd like to use a username different than the default
 # matrix_bot_matrix_registration_bot_matrix_user_id_localpart: bot.matrix-registration-bot
 
-# Generate a strong password here. Consider generating it with `pwgen -s 64 1`
+# Generate a strong password for the bot. You can create one with a command like `pwgen -s 64 1`.
 matrix_bot_matrix_registration_bot_bot_password: PASSWORD_FOR_THE_BOT
 
 # Enables registration
