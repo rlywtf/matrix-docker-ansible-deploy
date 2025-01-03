@@ -30,7 +30,7 @@ Depending on your current `vars.yml` file and desired configuration, **you may r
 
 ### Base configuration
 
-Add the following configuration to your `inventory/host_vars/matrix.example.com/vars.yml` file:
+To enable the bot, add the following configuration to your `inventory/host_vars/matrix.example.com/vars.yml` file:
 
 ```yaml
 matrix_bot_baibot_enabled: true
@@ -38,12 +38,12 @@ matrix_bot_baibot_enabled: true
 # Uncomment and adjust this part if you'd like to use a username different than the default
 # matrix_bot_baibot_config_user_mxid_localpart: baibot
 
-# Generate a strong password here. Consider generating it with `pwgen -s 64 1`.
+# Generate a strong password for the bot. You can create one with a command like `pwgen -s 64 1`.
 # If you'd like to change this password subsequently, see the details below.
 matrix_bot_baibot_config_user_password: 'PASSWORD_FOR_THE_BOT'
 
 # An optional passphrase to use for backing up and recovering the bot's encryption keys.
-# You can put any string here, but generating a strong one is preferred (e.g. `pwgen -s 64 1`).
+# You can create one with a command like `pwgen -s 64 1`.
 #
 # If set to null, the recovery module will not be used and losing your session/database
 # will mean you lose access to old messages in encrypted room.
@@ -383,7 +383,7 @@ ansible-playbook -i inventory/hosts setup.yml --tags=setup-all,ensure-matrix-use
 
 ## Usage
 
-To use the bot, invite the `@baibot:example.com` bot user into a room.
+To use the bot, invite it to any existing Matrix room (`/invite @baibot:example.com` where `example.com` is your base domain, not the `matrix.` domain).
 
 If you're an allowed bot [👥 user](https://github.com/etkecc/baibot/blob/main/docs/access.md#user) (see [👥 Initial users configuration](#-initial-users-configuration)), the bot will accept your invitation and join the room.
 

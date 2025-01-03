@@ -10,7 +10,7 @@ See the project's [documentation](https://github.com/matrix-org/mjolnir/blob/mai
 
 The playbook does not automatically create users for you. You **need to register the bot user manually** before setting up the bot.
 
-Choose a strong password for the bot. You can generate a good password with a command like this: `pwgen -s 64 1`.
+Generate a strong password for the bot. You can create one with a command like `pwgen -s 64 1`.
 
 You can use the playbook to [register a new user](registering-users.md):
 
@@ -20,9 +20,11 @@ ansible-playbook -i inventory/hosts setup.yml --extra-vars='username=bot.mjolnir
 
 If you would like Mjolnir to be able to deactivate users, move aliases, shutdown rooms, etc then it must be a server admin so you need to change `admin=no` to `admin=yes` in the command above.
 
-### Get an access token
+### Obtain an access token
 
 The bot requires an access token to be able to connect to your homeserver. Refer to the documentation on [how to obtain an access token](obtaining-access-tokens.md).
+
+⚠️ **Warning**: Access tokens are sensitive information. Do not include them in any bug reports, messages, or logs. Do not share the access token with anyone.
 
 ### Make sure the account is free from rate limiting
 
@@ -60,7 +62,7 @@ Finally invite the `@bot.mjolnir:example.com` account you created earlier into t
 
 ## Adjusting the playbook configuration
 
-Add the following configuration to your `inventory/host_vars/matrix.example.com/vars.yml` file. Make sure to replace `MANAGEMENT_ROOM_ID_HERE`.
+To enable the bot, add the following configuration to your `inventory/host_vars/matrix.example.com/vars.yml` file. Make sure to replace `MANAGEMENT_ROOM_ID_HERE`.
 
 ```yaml
 # Enable Mjolnir
@@ -109,7 +111,7 @@ matrix_bot_mjolnir_raw_homeserver_url: "{{ matrix_addons_homeserver_client_api_u
 
 When NOT using Pantalaimon, Mjolnir does not log in by itself and you must give it an access token for its bot account.
 
-Add the following configuration to your `inventory/host_vars/matrix.example.com/vars.yml` file. Make sure to replace `ACCESS_TOKEN_HERE` with the one created [above](#get-an-access-token).
+Add the following configuration to your `inventory/host_vars/matrix.example.com/vars.yml` file. Make sure to replace `ACCESS_TOKEN_HERE` with the one created [above](#obtain-an-access-token).
 
 ```yaml
 matrix_bot_mjolnir_access_token: "ACCESS_TOKEN_HERE"

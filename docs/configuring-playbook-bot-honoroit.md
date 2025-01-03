@@ -8,7 +8,7 @@ See the project's [documentation](https://github.com/etkecc/honoroit/blob/main/R
 
 ## Adjusting the playbook configuration
 
-To enable Honoroit, add the following configuration to your `inventory/host_vars/matrix.example.com/vars.yml` file:
+To enable the bot, add the following configuration to your `inventory/host_vars/matrix.example.com/vars.yml` file:
 
 ```yaml
 matrix_bot_honoroit_enabled: true
@@ -16,7 +16,7 @@ matrix_bot_honoroit_enabled: true
 # Uncomment and adjust this part if you'd like to use a username different than the default
 # matrix_bot_honoroit_login: honoroit
 
-# Generate a strong password here. Consider generating it with `pwgen -s 64 1`
+# Generate a strong password for the bot. You can create one with a command like `pwgen -s 64 1`.
 matrix_bot_honoroit_password: PASSWORD_FOR_THE_BOT
 
 # Adjust this to your room ID
@@ -66,7 +66,9 @@ ansible-playbook -i inventory/hosts setup.yml --tags=setup-all,ensure-matrix-use
 
 ## Usage
 
-To use the bot, invite the `@honoroit:example.com` to the room you specified in config, after that any Matrix user can send a message to the `@honoroit:example.com` to start a new thread in that room.
+To use the bot, invite it to the room you specified on your `vars.yml` file (`/invite @honoroit:example.com` where `example.com` is your base domain, not the `matrix.` domain).
+
+After the bot joins the room, any Matrix user can send a message to it to start a new thread in that room.
 
 Send `!ho help` to the bot in the room to see the available commands.
 

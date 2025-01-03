@@ -32,7 +32,7 @@ matrix_playbook_docker_installation_daemon_options_custom: {}
 # yet still use Traefik installed in another way.
 matrix_playbook_traefik_labels_enabled: "{{ matrix_playbook_reverse_proxy_type in ['playbook-managed-traefik', 'other-traefik-container'] }}"
 
-matrix_playbook_reverse_proxy_container_network: "{{ traefik_container_network if traefik_enabled else 'traefik' }}"
+matrix_playbook_reverse_proxy_container_network: "{{ traefik_container_network if traefik_enabled else 'traefik' if matrix_playbook_reverse_proxy_type in ['playbook-managed-traefik', 'other-traefik-container'] else '' }}"
 matrix_playbook_reverse_proxy_hostname: "{{ traefik_identifier if traefik_enabled else 'traefik' }}"
 
 matrix_playbook_reverse_proxy_traefik_middleware_compression_enabled: "{{ traefik_config_http_middlewares_compression_enabled if (traefik_enabled and traefik_config_http_middlewares_compression_enabled) else false }}"
@@ -1103,8 +1103,15 @@ matrix_mautrix_discord_container_additional_networks_auto: |-
       ([] if matrix_addons_homeserver_container_network == '' else [matrix_addons_homeserver_container_network])
       +
       ([postgres_container_network] if postgres_enabled and matrix_mautrix_facebook_database_hostname == postgres_connection_hostname else [])
+      +
+      ([matrix_playbook_reverse_proxyable_services_additional_network] if (matrix_playbook_reverse_proxyable_services_additional_network and matrix_mautrix_discord_container_labels_traefik_enabled) else [])
     ) | unique
   }}
+
+matrix_mautrix_discord_container_labels_traefik_enabled: "{{ matrix_playbook_reverse_proxy_type in ['playbook-managed-traefik', 'other-traefik-container'] }}"
+matrix_mautrix_discord_container_labels_traefik_docker_network: "{{ matrix_playbook_reverse_proxyable_services_additional_network }}"
+matrix_mautrix_discord_container_labels_traefik_entrypoints: "{{ traefik_entrypoint_primary }}"
+matrix_mautrix_discord_container_labels_traefik_tls_certResolver: "{{ traefik_certResolver_primary }}"
 
 matrix_mautrix_discord_systemd_required_services_list_auto: |
   {{
@@ -1116,8 +1123,12 @@ matrix_mautrix_discord_systemd_required_services_list_auto: |
 matrix_mautrix_discord_appservice_token: "{{ '%s' | format(matrix_homeserver_generic_secret_key) | password_hash('sha512', 'maudisc.as.tok', rounds=655555) | to_uuid }}"
 
 matrix_mautrix_discord_homeserver_address: "{{ matrix_addons_homeserver_client_api_url }}"
-matrix_mautrix_discord_homeserver_public_address: "{{ 'https' if matrix_playbook_ssl_enabled else 'http' }}://{{ matrix_server_fqn_matrix }}"
 matrix_mautrix_discord_homeserver_token: "{{ '%s' | format(matrix_homeserver_generic_secret_key) | password_hash('sha512', 'maudisc.hs.tok', rounds=655555) | to_uuid }}"
+
+matrix_mautrix_discord_bridge_avatar_proxy_key: "{{ '%s' | format(matrix_homeserver_generic_secret_key) | password_hash('sha512', 'maudisc.avatar', rounds=655555) | to_uuid }}"
+
+matrix_mautrix_discord_hostname: "{{ matrix_server_fqn_matrix }}"
+matrix_mautrix_discord_scheme: "{{ 'https' if matrix_playbook_ssl_enabled else 'http' }}"
 
 matrix_mautrix_discord_bridge_login_shared_secret_map_auto: |-
   {{
@@ -2723,10 +2734,12 @@ matrix_bot_matrix_registration_bot_container_network: "{{ matrix_addons_containe
 
 matrix_bot_matrix_registration_bot_container_additional_networks_auto: |-
   {{
-    ([] if matrix_addons_homeserver_container_network == '' else [matrix_addons_homeserver_container_network])
+    ([matrix_homeserver_container_network] if matrix_bot_matrix_registration_bot_container_network != matrix_homeserver_container_network else [])
   }}
 
-matrix_bot_matrix_registration_bot_matrix_homeserver_url: "{{ matrix_addons_homeserver_client_api_url }}"
+# Using `matrix_addons_homeserver_client_api_url` would not work here,
+# because `matrix-traefik:8008` (matrix-internal-client-api) does not expose any `/_synapse` paths.
+matrix_bot_matrix_registration_bot_api_base_url: "{{ matrix_homeserver_container_url }}"
 
 ######################################################################
 #

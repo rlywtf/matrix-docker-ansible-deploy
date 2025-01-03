@@ -8,7 +8,7 @@ See the project's [documentation](https://github.com/anoadragon453/matrix-remind
 
 ## Adjusting the playbook configuration
 
-Add the following configuration to your `inventory/host_vars/matrix.example.com/vars.yml` file:
+To enable the bot, add the following configuration to your `inventory/host_vars/matrix.example.com/vars.yml` file:
 
 ```yaml
 matrix_bot_matrix_reminder_bot_enabled: true
@@ -16,7 +16,7 @@ matrix_bot_matrix_reminder_bot_enabled: true
 # Uncomment and adjust this part if you'd like to use a username different than the default
 # matrix_bot_matrix_reminder_bot_matrix_user_id_localpart: bot.matrix-reminder-bot
 
-# Generate a strong password here. Consider generating it with `pwgen -s 64 1`
+# Generate a strong password for the bot. You can create one with a command like `pwgen -s 64 1`.
 matrix_bot_matrix_reminder_bot_matrix_user_password: PASSWORD_FOR_THE_BOT
 
 # Adjust this to your timezone
